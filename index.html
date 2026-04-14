@@ -9,27 +9,44 @@
   </head>
   <body>
     <!-- START SCREEN -->
-    <div id="start-screen" class="container">
-      <img src="./images/bgst1.jpg" width="500" alt="logo" />
-      <button id="start-btn">let's roll!</button>
+    <div id="start-screen" class="container"><img src="../images/bgst1.jpg" width="500" alt="logo"> <button id="start-btn">you wanna ride!</button>
     </div>
+    <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
 
     <!-- GAME SCREEN -->
-    <div id="game-screen" class="container">
+    <!--<div id="game-screen" class="container">
+              <div id="game-box">-->
+
       <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
 
-      <div id="game-box">
+      <div class="video-container">
+      <div id="game-screen">
+        <video id="bg-video" autoplay muted loop>
+          <source src="./video/vidtest2.mp4" type="video/mp4" />
+        </video>
+      </div>
+
         <!-- Game elements will be added here via javascript and DOM manipulation -->
       </div>
+      <!-- <video autoplay muted loop id="bg-video">
+  <source src="background.mp4" type=".video/vidtest2.mp4">
+</video> -->
     </div>
 
     <!-- GAME OVER SCREEN -->
     <div id="game-over-screen" class="container">
-      <img src="./images/bgend1.jpg" width="500" alt="logo" />
+      <img src="../images/bgend1.jpg" width="500" alt="logo" />
     </div>
+    <!--
+    <div class="video-container">
+      <video autoplay muted loop>
+        <source src="background.mp4" type="video/mp4" />
+      </video>
+    </div>-->
 
     <script src="./js/main.js"></script>
     <script src="./js/obst1.js"></script>
     <script src="./js/bike.js"></script>
+    <script src="./js/time.js"></script>
   </body>
 </html>

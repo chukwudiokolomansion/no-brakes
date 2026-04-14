@@ -4,7 +4,7 @@ class Obstacle {
     this.node.src = "./images/obst11.jpg";
     gameBoxNode.append(this.node); // add to game screen
 
-    this.x = 50;
+    this.x = 900;
     this.y = 60;
     this.width = 40;
     this.height = 50;
