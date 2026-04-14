@@ -1,13 +1,19 @@
 class Obstacle {
-  constructor() {
+  constructor(type) {
+    this.type = type;
+
     this.node = document.createElement("img");
-    this.node.src = "./images/obst11.jpg";
+    if (this.type === "up1") {
+      this.node.src = "./images/obst11.png";
+    } else if (this.type === "up2") {
+      this.node.src = "./images/obst11.png";
+    }
     gameBoxNode.append(this.node); // add to game screen
 
-    this.x = 900;
-    this.y = 60;
+    this.x = 500;
+    this.y = 400;
     this.width = 40;
-    this.height = 50;
+    this.height = 250;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
@@ -16,11 +22,14 @@ class Obstacle {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.gravitySpeed = 1;
+    //this.node.style.left = `${this.x}px`;
+    //this.node.style.left = Math.random() * window.innerWidth + "px";
+
+    this.gravitySpeed = 2; //Math.random() * window.innerWidth;
   }
 
   automaticGravity() {
-    this.y += this.gravitySpeed;
-    this.node.style.top = `${this.y}px`;
+    this.y -= this.gravitySpeed;
+    this.node.style.left = `${this.x}px`;
   }
 }

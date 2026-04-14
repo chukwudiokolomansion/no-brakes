@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  background-color: lightgray;
+  /* overflow: hidden;*/
+  background: skyblue;
 }
 
 #start-btn {

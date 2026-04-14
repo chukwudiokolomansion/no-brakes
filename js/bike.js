@@ -1,7 +1,7 @@
 class Bike {
   constructor() {
     this.node = document.createElement("img");
-    this.node.src = "./images/bike9.jpg";
+    this.node.src = "./images/bike1.png";
     gameBoxNode.append(this.node); // adding the node to the game screen
 
     this.x = 850;
