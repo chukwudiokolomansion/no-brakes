@@ -15,7 +15,7 @@ let objSpawnIntervalId = null;
 
 const timeRemainingContainer = document.getElementById("timeRemaining");
 
-const timeDuration = 120; // 120 seconds (2 minutes)
+const timeDuration = 3; // 120 seconds (2 minutes)
 
 let bikeObj = null;
 let obstObj = null;
@@ -135,9 +135,9 @@ function spawnObj() {
 
 //function game over
 function gameOver() {
-  /*clearInterval(gameIntervalId);
+  clearInterval(gameIntervalId);
   clearInterval(objSpawnIntervalId);
-  clearInterval(timer);*/
+  clearInterval(timer);
 
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";

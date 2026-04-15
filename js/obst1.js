@@ -20,7 +20,7 @@ class Obstacle {
     this.node.style.height = `${this.height}px`;
     this.node.style.position = "absolute";
     this.node.style.top = `${this.y}px`;
-    this.node.style.left = `${this.x}px`;
+    this.node.style.down = `${this.x}px`;
 
     //this.node.style.left = `${this.x}px`;
     //this.node.style.left = Math.random() * window.innerWidth + "px";
@@ -29,7 +29,7 @@ class Obstacle {
   }
 
   automaticGravity() {
-    this.y -= this.gravitySpeed;
+    this.y += this.gravitySpeed;
     this.node.style.left = `${this.x}px`;
   }
 }
