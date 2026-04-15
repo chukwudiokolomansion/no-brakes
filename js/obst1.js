@@ -10,26 +10,32 @@ class Obstacle {
     }
     gameBoxNode.append(this.node); // add to game screen
 
+    this.lanes = [10, 30, 50, 70, 90];
+    this.lane = this.lanes[Math.floor(Math.random() * this.lanes.length)];
+
+    this.gravitySpeed = 50; //Math.random() * window.innerWidth;
+
     this.x = 500;
     this.y = yPosition;
-    this.width = 40;
-    this.height = 250;
+    this.width = 50;
+    this.height = 50;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
     this.node.style.height = `${this.height}px`;
     this.node.style.position = "absolute";
-    this.node.style.top = `${this.y}px`;
-    this.node.style.down = `${this.x}px`;
+    this.node.style.transform = "translateX(-50%)";
+    this.node.style.left = this.lane + "%";
 
-    //this.node.style.left = `${this.x}px`;
-    //this.node.style.left = Math.random() * window.innerWidth + "px";
-
-    this.gravitySpeed = 2; //Math.random() * window.innerWidth;
+    this.updatePosition();
   }
 
-  automaticGravity() {
-    this.x += this.gravitySpeed;
-    this.node.style.left = `${this.x}px`;
+  updatePosition() {
+    this.node.style.top = this.y + "px";
+  }
+
+  automaticMove() {
+    this.y += this.gravitySpeed;
+    this.updatePosition();
   }
 }

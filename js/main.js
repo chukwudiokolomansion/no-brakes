@@ -15,7 +15,7 @@ let objSpawnIntervalId = null;
 
 const timeRemainingContainer = document.getElementById("timeRemaining");
 
-const timeDuration = 30; // 120 seconds (2 minutes)
+const timeDuration = 120; // 120 seconds (2 minutes)
 
 //let bikeObj = null;
 let obstObj = null;
@@ -56,7 +56,7 @@ function gameStart() {
   startScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
 
-  gameIntervalId = setInterval(gameloop, Math.floor(1000 / 60));
+  gameIntervalId = setInterval(gameLoop, Math.floor(2000 / 60));
 
   //fallBall();
   //setInterval(Balls, 50);
@@ -72,7 +72,7 @@ function gameStart() {
 
   //spawnIntervalId = setInterval(spawn, 2000)
 
-  objSpawnIntervalId = setInterval(spawnObj, 2000);
+  objSpawnIntervalId = setInterval(spawnObj, 1000);
 }
 function startTimer() {
   timer = setInterval(function () {
@@ -100,33 +100,35 @@ function startTimer() {
 //initialize the other intervals of the game}*/
 
 //all automatic movements, collisions and animations
-//funtions gameloop
-function gameloop() {
+function gameLoop() {
+  /*function gameLoop() {
   //bikeObj.bikeSpeed();
   //ballsObj.ballGravity();
-  /*if (ballsObj) {
-    ballsObj.ballGravity();
-  }*/
-  obstObj.automaticGravity();
+  /*if (ballsObj) {*/
+  ballsObj.ballGravity();
 
-  obstArray.forEach((obstObj) => {
-    obstObj.automaticGravity();
+  //obstObj.automaticMove();
+
+  obstArray.forEach((ballsObj) => {
+    ballsObj.ballGravity();
   });
   //ballsObj.ballGravity();
 }
 
 //funtions gamespawn
 function spawnObj() {
+  const randomPositionX = Math.floor(Math.random() * 1800);
+  const randomPositionY = Math.floor(Math.random() * 100);
+  let newBallFall = new Balls(randomPositionX, randomPositionY);
+  obstArray.push(newBallFall);
   // random number between -200 and 0
-  const randomPositionY = Math.floor(Math.random() * -200);
+  /*const randomPositionY = Math.floor(Math.random() * -100);
 
   let newObstUp = new Obstacle("up", randomPositionY);
   obstArray.push(newObstUp);
 
   let newObstDown = new Obstacle("down", randomPositionY + 340);
-  obstArray.push(newObstDown);
-
-  //console.log(tubesArray);
+  obstArray.push(newObstDown);*/
 }
 //functions despawn
 //function collition
