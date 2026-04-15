@@ -9,36 +9,46 @@
   </head>
   <body>
     <!-- START SCREEN -->
-    <div id="start-screen" class="container"><img src="../images/frontstate1.png" alt="logo" class="full-bg"> <button id="start-btn">let's ride!</button>
+    <div id="start-screen" class="container">
+      <img src="../images/frontstate1.png" alt="logo" class="full-bg" />
+      <button id="start-btn">let's ride!</button>
     </div>
     <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
 
     <!-- GAME SCREEN -->
     <!--<div id="game-screen" class="container">
               <div id="game-box">-->
-
+    <!-- GAME SCREEN -->
+    <div id="game-screen">
       <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
 
-      <div class="video-container">
-      <div id="game-screen">
+      <div id="game-box" class="video-container">
         <video id="bg-video" autoplay muted loop>
           <source src="./video/vidtest2.mp4" type="video/mp4" />
         </video>
-      </div>
-
-    
-
-
         <!-- Game elements will be added here via javascript and DOM manipulation -->
-      
-      <!-- <video autoplay muted loop id="bg-video">
+      </div>
+    </div>
+    <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
+
+    <!--<div id="game-screen" class="video-container">
+      <video id="bg-video" autoplay muted loop>
+        <source src="./video/vidtest2.mp4" type="video/mp4" />
+      </video>-->
+
+    <!--<div id="game-box"></div>
+    </div>
+-->
+    <!-- Game elements will be added here via javascript and DOM manipulation -->
+
+    <!-- <video autoplay muted loop id="bg-video">
   <source src="background.mp4" type=".video/vidtest2.mp4">
 </video> -->
-    
 
     <!-- GAME OVER SCREEN -->
     <div id="game-over-screen" class="container">
-      <img src="../images/backstate1.png" alt="logo class?gameover-bg" />
+      <img src="../images/backstate1.png" alt="logo" />
+      <button onclick="location.reload()" id="restart-btn">Restart</button>
     </div>
     <!--
     <div class="video-container">
@@ -52,6 +62,5 @@
     <script src="./js/bike.js"></script>
     <script src="./js/time.js"></script>
     <script src="./js/balls.js"></script>
-
   </body>
 </html>

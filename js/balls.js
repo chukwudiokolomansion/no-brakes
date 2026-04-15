@@ -14,9 +14,9 @@ class Balls {
     this.node.style.height = `${this.height}px`;
     this.node.style.position = "absolute";
     //this.node.style.top = `${this.y}px`;
-    //this.node.style.left = `${this.x}px`;
+    this.node.style.left = `${this.x}px`;
     this.node.style.top = "60px";
-    this.node.style.left = Math.random() * window.innerWidth + "px";
+    //this.node.style.left = Math.random() * window.innerWidth + "px";
 
     //Random horizontal position
 

@@ -4,10 +4,10 @@ class Bike {
     this.node.src = "./images/bike1.png";
     gameBoxNode.append(this.node); // adding the node to the game screen
 
-    this.x = 850;
-    this.y = 600;
-    this.width = 240;
-    this.height = 300;
+    this.x = 900;
+    this.y = 700;
+    this.width = 140;
+    this.height = 200;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
@@ -16,15 +16,21 @@ class Bike {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.engineSpeed = 1;
+    this.swerveSpeed = 10;
     //this.rightSwerve = 40;
     //this.leftSwerve = 40
   }
 
-  bikeSpeed() {
-    this.y -= this.engineSpeed;
-    this.node.style.top = `${this.y}px`;
-    //! everytime we adjust a numerical value like y, x, width or height, WE NEED TO ADJUST THE NODE (width, height, top or left)
+  leftSpeed() {
+    this.x -= this.swerveSpeed;
+    this.node.style.left = `${this.x}px`;
+    //! everytime we adjust a numerical value like y, x,
+    // width or height, WE NEED TO ADJUST THE NODE
+    //  (width, height, top or left)
+  }
+  rightSpeed() {
+    this.x += this.swerveSpeed;
+    this.node.style.left = `${this.x}px`;
   }
 
   /*swerveRight() {

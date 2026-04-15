@@ -1,17 +1,17 @@
 class Obstacle {
-  constructor(type) {
+  constructor(type, yPosition) {
     this.type = type;
 
     this.node = document.createElement("img");
-    if (this.type === "up1") {
+    if (this.type === "up") {
       this.node.src = "./images/obst11.png";
-    } else if (this.type === "up2") {
-      this.node.src = "./images/obst11.png";
+    } else if (this.type === "down") {
+      this.node.src = "./images/obst12.jpg";
     }
     gameBoxNode.append(this.node); // add to game screen
 
     this.x = 500;
-    this.y = 400;
+    this.y = yPosition;
     this.width = 40;
     this.height = 250;
 
@@ -29,7 +29,7 @@ class Obstacle {
   }
 
   automaticGravity() {
-    this.y += this.gravitySpeed;
+    this.x += this.gravitySpeed;
     this.node.style.left = `${this.x}px`;
   }
 }
