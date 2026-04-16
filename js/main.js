@@ -16,7 +16,7 @@ const bgMusic = new Audio("../audio/bgmusic.mp3");
 
 // settings
 engineSound.loop = true;
-engineSound.volume = 1;
+engineSound.volume = 0.3;
 
 bgMusic.loop = true;
 bgMusic.volume = 0.5;
@@ -88,6 +88,7 @@ function gameStart() {
   objSpawnIntervalId = setInterval(spawnObj, 2000);
 
   engineSound.currentTime = 0;
+  engineSound.volume = 0.6;
   engineSound.play();
 
   bgMusic.currentTime = 0;
@@ -201,7 +202,27 @@ function gameOver() {
 }
 
 //event listerners
-startBtnNode.addEventListener("click", gameStart);
+window.addEventListener("click", () => {
+  engineSound.currentTime = 0;
+  engineSound.volume = 1;
+  engineSound.play();
+
+  //gameStart();
+});
+window.addEventListener("click", () => {
+  bgMusic.currentTime = 0;
+  bgMusic.volume = 1;
+  bgMusic.play();
+
+  //gameStart();
+});
+startBtnNode.addEventListener("click", () => {
+  engineSound.currentTime = 0;
+  engineSound.volume = 0.3;
+  engineSound.play();
+
+  gameStart();
+});
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {

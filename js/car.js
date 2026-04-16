@@ -36,36 +36,3 @@ class Car {
     this.updatePosition();
   }
 }
-
-function spawnObj() {
-  let newCar = new Car();
-  obstArray.push(newCar);
-}
-
-obstArray.forEach((car) => {
-  car.move();
-});
-
-function tubeDespawnCheck() {
-  obstArray.forEach((car, index) => {
-    if (car.y > window.innerHeight) {
-      car.node.remove();
-      obstArray.splice(index, 1);
-    }
-  });
-}
-
-this.x;
-this.y;
-this.width;
-this.height;
-
-const carImages = [
-  "./images/car1.png",
-  "./images/car2.png",
-  "./images/truck.png",
-];
-
-this.node.src = carImages[Math.floor(Math.random() * carImages.length)];
-
-this.speed = 5 + Math.random() * 3;

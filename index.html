@@ -2,60 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>No Brakes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>no brakes</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" href="./images/icon.avif" />
   </head>
   <body>
     <!-- START SCREEN -->
     <div id="start-screen" class="container">
-      <img src="../images/frontstate1.png" alt="logo" class="full-bg" />
+      <img src="../images/frontstate1.png" class="full-bg" />
       <button id="start-btn">let's ride!</button>
     </div>
-    <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
 
     <!-- GAME SCREEN -->
-    <!--<div id="game-screen" class="container">
-              <div id="game-box">-->
-    <!-- GAME SCREEN -->
-    <div id="game-screen">
-      <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
-
-      <div id="game-box" class="video-container">
-        <video id="bg-video" autoplay muted loop>
-          <source src="./video/vidtest2.mp4" type="video/mp4" />
-        </video>
-        <!-- Game elements will be added here via javascript and DOM manipulation -->
-      </div>
-    </div>
     <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
 
-    <!--<div id="game-screen" class="video-container">
+    <div id="game-screen" class="video-container">
       <video id="bg-video" autoplay muted loop>
         <source src="./video/vidtest2.mp4" type="video/mp4" />
-      </video>-->
+      </video>
+      <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
 
-    <!--<div id="game-box"></div>
+      <div id="game-box"></div>
     </div>
--->
-    <!-- Game elements will be added here via javascript and DOM manipulation -->
 
-    <!-- <video autoplay muted loop id="bg-video">
-  <source src="background.mp4" type=".video/vidtest2.mp4">
-</video> -->
+    <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
+    <!-- Game elements will be added here via javascript and DOM manipulation -->
 
     <!-- GAME OVER SCREEN -->
     <div id="game-over-screen" class="container">
-      <img src="../images/backstate1.png" alt="logo" />
+      <img
+        src="../images/backstate1.png"
+        alt="game-over-screen"
+        class="full-bg"
+      />
       <button onclick="location.reload()" id="restart-btn">Restart</button>
     </div>
-    <!--
-    <div class="video-container">
-      <video autoplay muted loop>
-        <source src="background.mp4" type="video/mp4" />
-      </video>
-    </div>-->
 
     <script src="./js/main.js"></script>
     <script src="./js/obst1.js"></script>
