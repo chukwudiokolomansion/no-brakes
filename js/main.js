@@ -10,9 +10,9 @@ const startBtnNode = document.querySelector("#start-btn");
 const gameBoxNode = document.querySelector("#game-box");
 
 //global variables
-const engineSound = new Audio("../audio/engine.wav");
-const crashSound = new Audio("../audio/crash.wav");
-const bgMusic = new Audio("../audio/bgmusic.mp3");
+const engineSound = new Audio("./audio/engine.wav");
+const crashSound = new Audio("./audio/crash.wav");
+const bgMusic = new Audio("./audio/bgmusic.mp3");
 
 // settings
 engineSound.loop = true;
