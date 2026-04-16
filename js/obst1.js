@@ -17,8 +17,8 @@ class Obstacle {
 
     this.x = 500;
     this.y = yPosition;
-    this.width = 50;
-    this.height = 50;
+    this.width = 100;
+    this.height = 100;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;

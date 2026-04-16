@@ -6,8 +6,8 @@ class Balls {
 
     this.x = upBall;
     this.y = downBall;
-    this.width = 40;
-    this.height = 40;
+    this.width = 140;
+    this.height = 140;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;

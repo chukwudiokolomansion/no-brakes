@@ -10,6 +10,19 @@ const startBtnNode = document.querySelector("#start-btn");
 const gameBoxNode = document.querySelector("#game-box");
 
 //global variables
+const engineSound = new Audio("../audio/engine.wav");
+const crashSound = new Audio("../audio/crash.wav");
+const bgMusic = new Audio("../audio/bgmusic.mp3");
+
+// settings
+engineSound.loop = true;
+engineSound.volume = 1;
+
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
+
+crashSound.volume = 0.8;
+
 let gameIntervalId = null;
 let objSpawnIntervalId = null;
 
@@ -72,8 +85,15 @@ function gameStart() {
 
   //spawnIntervalId = setInterval(spawn, 2000)
 
-  objSpawnIntervalId = setInterval(spawnObj, 1000);
+  objSpawnIntervalId = setInterval(spawnObj, 2000);
+
+  engineSound.currentTime = 0;
+  engineSound.play();
+
+  bgMusic.currentTime = 0;
+  bgMusic.play();
 }
+
 function startTimer() {
   timer = setInterval(function () {
     // decrease time
@@ -105,13 +125,15 @@ function gameLoop() {
   //bikeObj.bikeSpeed();
   //ballsObj.ballGravity();
   /*if (ballsObj) {*/
-  ballsObj.ballGravity();
+  //ballsObj.ballGravity();
 
   //obstObj.automaticMove();
 
   obstArray.forEach((ballsObj) => {
     ballsObj.ballGravity();
   });
+  tubeDespawnCheck();
+  bikeCollitionCheck();
   //ballsObj.ballGravity();
 }
 
@@ -132,13 +154,47 @@ function spawnObj() {
 }
 //functions despawn
 //function collition
-//function collition
+function tubeDespawnCheck() {
+  obstArray.forEach((ballsObj, index) => {
+    if (ballsObj.x <= 0) {
+      // When we want to remove an element from the game we need to remove it from both environments:
+      //1. DOM environment
+      ballsObj.node.remove();
+      //2 JS environment
+      obstArray.splice(index, 1);
+    }
+  });
+}
+
+function bikeCollitionCheck() {
+  // birdObj
+  // tubeObj
+  obstArray.forEach((ballsObj) => {
+    let isColliding = collisionCheck(bikeObj, ballsObj);
+    if (isColliding === true) {
+      crashSound.currentTime = 0;
+      crashSound.play();
+      gameOver();
+    }
+  });
+}
+
+function collisionCheck(elem1, elem2) {
+  return (
+    elem1.x < elem2.x + elem2.width &&
+    elem1.x + elem1.width > elem2.x &&
+    elem1.y < elem2.y + elem2.height &&
+    elem1.y + elem1.height > elem2.y
+  );
+}
 
 //function game over
 function gameOver() {
   clearInterval(gameIntervalId);
   clearInterval(objSpawnIntervalId);
   clearInterval(timer);
+  engineSound.play();
+  bgMusic.pause();
 
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
@@ -150,13 +206,20 @@ startBtnNode.addEventListener("click", gameStart);
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {
     bikeObj.leftSpeed();
+    engineSound.volume = 0.9;
   }
 
   if (e.key === "ArrowRight") {
     bikeObj.rightSpeed();
+    engineSound.volume = 0.9;
   }
 });
 
+document.addEventListener("keyup", (e) => {
+  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+    engineSound.volume = 0.4;
+  }
+});
 /*gameBoxNode.addEventListener("click", () => {
   birdObj.jump();
 });*/
