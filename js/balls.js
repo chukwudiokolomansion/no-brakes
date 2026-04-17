@@ -15,8 +15,8 @@ class Balls {
 
     this.x = upBall;
     this.y = downBall;
-    this.width = 240;
-    this.height = 340;
+    this.width = 440;
+    this.height = 540;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
@@ -25,11 +25,11 @@ class Balls {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.Speed = 15;
+    this.speed = 15;
   }
 
-  ballGravity() {
-    this.y += this.Speed;
-    this.node.style.top = `${this.y}px`;
+  ballGravity(speedMultiplier = 1) {
+    this.y += this.speed * speedMultiplier;
+    this.node.style.top = this.y + "px";
   }
 }

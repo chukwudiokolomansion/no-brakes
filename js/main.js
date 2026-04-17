@@ -28,12 +28,12 @@ const bgMusic = new Audio("./audio/bgmusic.mp3");
 
 // settings
 engineSound.loop = true;
-engineSound.volume = 0.3;
+engineSound.volume = 0.1;
 
 bgMusic.loop = true;
-bgMusic.volume = 0.5;
+bgMusic.volume = 0.1;
 
-crashSound.volume = 0.8;
+crashSound.volume = 0.1;
 
 let gameIntervalId = null;
 let objSpawnIntervalId = null;
@@ -42,7 +42,7 @@ const timeRemainingContainer = document.getElementById("timeRemaining");
 
 const timeDuration = 180; // 120 seconds (2 minutes)
 
-//let bikeObj = null;
+let bikeObj = null;
 //let obstObj = null;
 let ballsObj = null;
 let obstArray = [];
@@ -74,14 +74,25 @@ function gameStart() {
 
   objSpawnIntervalId = setInterval(spawnObj, 2000);
 
-  engineSound.currentTime = 0;
-  engineSound.volume = 0.6;
-  engineSound.play();
+  /*engineSound.currentTime = 0;
+  engineSound.volume = 0.5;
+  engineSound.play();*/
 
   bgMusic.currentTime = 0;
   bgMusic.play();
 }
+function createExplosion(x, y) {
+  const explosion = document.createElement("div");
+  explosion.classList.add("explosion");
+  explosion.style.left = x + "px";
+  explosion.style.top = y + "px";
 
+  gameBoxNode.appendChild(explosion);
+
+  setTimeout(() => {
+    explosion.remove();
+  }, 500);
+}
 function updateUI() {
   // Score
   if (scoreContainer) {
@@ -162,6 +173,7 @@ function bikeCollisionCheck() {
       crashSound.play();
 
       // remove obstacle after hit
+      createExplosion(bikeObj, ballsObj.y);
       ballsObj.node.remove();
       obstArray.splice(index, 1);
 
@@ -202,21 +214,21 @@ function gameOver() {
 //event listerners
 window.addEventListener("click", () => {
   engineSound.currentTime = 0;
-  engineSound.volume = 1;
+  engineSound.volume = 0.5;
   engineSound.play();
 
   //gameStart();
 });
 window.addEventListener("click", () => {
   bgMusic.currentTime = 0;
-  bgMusic.volume = 1;
+  bgMusic.volume = 0.5;
   bgMusic.play();
 
   //gameStart();
 });
 startBtnNode.addEventListener("click", () => {
   engineSound.currentTime = 0;
-  engineSound.volume = 0.3;
+  engineSound.volume = 0.5;
   engineSound.play();
 
   gameStart();
@@ -225,17 +237,9 @@ startBtnNode.addEventListener("click", () => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") {
     bikeObj.leftSpeed();
-    engineSound.volume = 0.9;
   }
 
   if (e.key === "ArrowRight") {
     bikeObj.rightSpeed();
-    engineSound.volume = 0.9;
-  }
-});
-
-document.addEventListener("keyup", (e) => {
-  if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-    engineSound.volume = 0.4;
   }
 });
