@@ -3,7 +3,7 @@ class Balls {
     this.node = document.createElement("img");
 
     const carImages = [
-      "./images/obst1.png",
+      "./images/obst11.png",
       "./images/stone1.png",
       "./images/dragon.png",
     ];
@@ -25,10 +25,10 @@ class Balls {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.speed = 15;
+    this.speed = 10;
   }
 
-  ballGravity(speedMultiplier = 1) {
+  ballGravity(speedMultiplier = 3) {
     this.y += this.speed * speedMultiplier;
     this.node.style.top = this.y + "px";
   }

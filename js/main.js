@@ -11,7 +11,8 @@ const gameBoxNode = document.querySelector("#game-box");
 
 //global variables
 
-// NEW
+let speedMultiplier = 1.0;
+
 let score = 0;
 let lives = 2;
 
@@ -69,10 +70,11 @@ function gameStart() {
   ballsObj = new Balls();
 
   startTimer();
+  speedMultiplier = 1.0;
 
   //spawnIntervalId = setInterval(spawn, 2000)
 
-  objSpawnIntervalId = setInterval(spawnObj, 2000);
+  objSpawnIntervalId = setInterval(spawnObj, 500);
 
   /*engineSound.currentTime = 0;
   engineSound.volume = 0.5;
@@ -120,11 +122,18 @@ function startTimer() {
     // decrease time
 
     timeObj.timeRemaining--;
+
+    const elapsed = timeDuration - timeObj.timeRemaining;
+    if (elapsed === 120) {
+      speedMultiplier = 5.0; // Extreme: 1 min left
+    } else if (elapsed === 60) {
+      speedMultiplier = 2.5; // Fast: 2 mins left
+    }
+
     const minutes = Math.floor(timeObj.timeRemaining / 60)
       .toString()
       .padStart(2, "0");
     const seconds = (timeObj.timeRemaining % 60).toString().padStart(2, "0");
-
     timeRemainingContainer.innerText = `${minutes}:${seconds}`;
 
     if (timeObj.timeRemaining <= 0) {
@@ -147,7 +156,7 @@ function gameLoop() {
 
 //funtions gamespawn
 function spawnObj() {
-  const randomPositionX = Math.floor(Math.random() * 6400);
+  const randomPositionX = 3400 + Math.floor(Math.random() * 1300);
   const randomPositionY = Math.floor(Math.random() * 6400);
   let newBallFall = new Balls(randomPositionX, randomPositionY);
   obstArray.push(newBallFall);
@@ -214,21 +223,21 @@ function gameOver() {
 //event listerners
 window.addEventListener("click", () => {
   engineSound.currentTime = 0;
-  engineSound.volume = 0.5;
+  engineSound.volume = 0.1;
   engineSound.play();
 
   //gameStart();
 });
 window.addEventListener("click", () => {
   bgMusic.currentTime = 0;
-  bgMusic.volume = 0.5;
+  bgMusic.volume = 0.1;
   bgMusic.play();
 
   //gameStart();
 });
 startBtnNode.addEventListener("click", () => {
   engineSound.currentTime = 0;
-  engineSound.volume = 0.5;
+  engineSound.volume = 0.1;
   engineSound.play();
 
   gameStart();

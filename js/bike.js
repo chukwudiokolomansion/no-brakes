@@ -18,13 +18,26 @@ class Bike {
 
     this.swerveSpeed = 50;
   }
+  updatePosition() {
+    const minLeft = 2600;
+    const maxRight = 4700 - this.width;
+
+    if (this.x < minLeft) this.x = minLeft;
+    if (this.x > maxRight) this.x = maxRight;
+
+    this.node.style.left = this.x + "px";
+  }
 
   leftSpeed() {
     this.x -= this.swerveSpeed;
+    this.updatePosition();
+
     this.node.style.left = `${this.x}px`;
   }
   rightSpeed() {
     this.x += this.swerveSpeed;
+    this.updatePosition();
+
     this.node.style.left = `${this.x}px`;
   }
 }
