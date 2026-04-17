@@ -6,8 +6,8 @@ class Bike {
 
     this.x = 3400;
     this.y = 2700;
-    this.width = 500;
-    this.height = 900;
+    this.width = 300;
+    this.height = 500;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;

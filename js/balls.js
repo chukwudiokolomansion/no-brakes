@@ -25,7 +25,7 @@ class Balls {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.speed = 10;
+    this.speed = 5;
   }
 
   ballGravity(speedMultiplier = 3) {

@@ -74,7 +74,7 @@ function gameStart() {
 
   //spawnIntervalId = setInterval(spawn, 2000)
 
-  objSpawnIntervalId = setInterval(spawnObj, 500);
+  objSpawnIntervalId = setInterval(spawnObj, 3000);
 
   /*engineSound.currentTime = 0;
   engineSound.volume = 0.5;
@@ -156,9 +156,9 @@ function gameLoop() {
 
 //funtions gamespawn
 function spawnObj() {
-  const randomPositionX = 3400 + Math.floor(Math.random() * 1300);
-  const randomPositionY = Math.floor(Math.random() * 6400);
-  let newBallFall = new Balls(randomPositionX, randomPositionY);
+  const randomPositionX = 2600 + Math.floor(Math.random() * 1300);
+
+  let newBallFall = new Balls(randomPositionX, 0);
   obstArray.push(newBallFall);
 }
 
