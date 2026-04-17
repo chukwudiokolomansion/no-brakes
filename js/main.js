@@ -40,7 +40,7 @@ let objSpawnIntervalId = null;
 
 const timeRemainingContainer = document.getElementById("timeRemaining");
 
-const timeDuration = 120; // 120 seconds (2 minutes)
+const timeDuration = 180; // 120 seconds (2 minutes)
 
 //let bikeObj = null;
 //let obstObj = null;
@@ -49,34 +49,6 @@ let obstArray = [];
 
 let timer;
 
-/*function fallBall() {
-  /*const obj = document.createElement("div");
-  obj.classList.add("falling");*/
-
-// Random horizontal position
-/*obj.style.left = Math.random() * window.innerWidth + "px";
-  obj.style.top = "0px";*/
-
-//gameBoxNode.appendChild(obj);
-/*ballGravity();
-  // Move object down every frame
-  let position = 0;
-
-  const fall = setInterval(() => {
-    position += 5;
-    ballsObj.style.top = position + "px";
-
-    // Remove when off screen
-    if (position > window.innerHeight) {
-      clearInterval(fall);
-      obj.remove();
-    }
-  }, 30);
-}*/
-
-// Create new objects repeatedly
-/*global game functions: function gameStart {
- changing states*/
 function gameStart() {
   startScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
@@ -90,11 +62,6 @@ function gameStart() {
   updateUI();
 
   gameIntervalId = setInterval(gameLoop, Math.floor(2000 / 60));
-
-  //fallBall();
-  //setInterval(Balls, 50);
-
-  //gameIntervalId = setInterval(gameloop, Math.floor(1000/60))
 
   bikeObj = new Bike();
   //obstObj = new Obstacle();
@@ -156,22 +123,7 @@ function startTimer() {
     }
   }, 1000);
 }
-//starting the main game interval
-
-//adding the initial elements of the game
-
-//initialize the other intervals of the game}*/
-
-//all automatic movements, collisions and animations
 function gameLoop() {
-  /*function gameLoop() {
-  //bikeObj.bikeSpeed();
-  //ballsObj.ballGravity();
-  /*if (ballsObj) {*/
-  //ballsObj.ballGravity();
-
-  //obstObj.automaticMove();
-
   obstArray.forEach((ballsObj) => {
     ballsObj.ballGravity();
   });
@@ -188,17 +140,8 @@ function spawnObj() {
   const randomPositionY = Math.floor(Math.random() * 6400);
   let newBallFall = new Balls(randomPositionX, randomPositionY);
   obstArray.push(newBallFall);
-  // random number between -200 and 0
-  /*const randomPositionY = Math.floor(Math.random() * -100);
-
-  let newObstUp = new Obstacle("up", randomPositionY);
-  obstArray.push(newObstUp);
-
-  let newObstDown = new Obstacle("down", randomPositionY + 340);
-  obstArray.push(newObstDown);*/
 }
-//functions despawn
-//function collition
+
 function tubeDeSpawnCheck() {
   for (let i = obstArray.length - 1; i >= 0; i--) {
     if (obstArray[i].x <= 0) {
@@ -296,6 +239,3 @@ document.addEventListener("keyup", (e) => {
     engineSound.volume = 0.4;
   }
 });
-/*gameBoxNode.addEventListener("click", () => {
-  birdObj.jump();
-});*/

@@ -1,7 +1,7 @@
 class Balls {
   constructor(upBall, downBall) {
     this.node = document.createElement("img");
-    //this.node.src = "./images/obst11.png";
+
     const carImages = [
       "./images/obst1.png",
       "./images/stone1.png",
@@ -24,10 +24,6 @@ class Balls {
     this.node.style.position = "absolute";
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
-    //this.node.style.top = "60px";
-    //this.node.style.left = Math.random() * window.innerWidth + "px";
-
-    //Random horizontal position
 
     this.Speed = 15;
   }
@@ -35,7 +31,5 @@ class Balls {
   ballGravity() {
     this.y += this.Speed;
     this.node.style.top = `${this.y}px`;
-    //this.node.left = Math.random() * window.innerWidth + "px";
-    //this.node.style.top = "0px";
   }
 }
