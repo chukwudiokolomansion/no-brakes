@@ -10,6 +10,18 @@ const startBtnNode = document.querySelector("#start-btn");
 const gameBoxNode = document.querySelector("#game-box");
 
 //global variables
+
+// NEW
+let score = 0;
+let lives = 2;
+
+let maxHealth = 100;
+let currentHealth = 100;
+
+const healthFill = document.getElementById("health-fill");
+const scoreContainer = document.getElementById("score");
+const livesContainer = document.getElementById("lives");
+
 const engineSound = new Audio("./audio/engine.wav");
 const crashSound = new Audio("./audio/crash.wav");
 const bgMusic = new Audio("./audio/bgmusic.mp3");
@@ -31,7 +43,7 @@ const timeRemainingContainer = document.getElementById("timeRemaining");
 const timeDuration = 120; // 120 seconds (2 minutes)
 
 //let bikeObj = null;
-let obstObj = null;
+//let obstObj = null;
 let ballsObj = null;
 let obstArray = [];
 
@@ -69,6 +81,14 @@ function gameStart() {
   startScreenNode.style.display = "none";
   gameScreenNode.style.display = "flex";
 
+  score = 0;
+  score = 0;
+  currentHealth = maxHealth;
+
+  //lives = 2;
+
+  updateUI();
+
   gameIntervalId = setInterval(gameLoop, Math.floor(2000 / 60));
 
   //fallBall();
@@ -77,7 +97,7 @@ function gameStart() {
   //gameIntervalId = setInterval(gameloop, Math.floor(1000/60))
 
   bikeObj = new Bike();
-  obstObj = new Obstacle();
+  //obstObj = new Obstacle();
   timeObj = new Time(timeDuration, timeDuration);
   ballsObj = new Balls();
 
@@ -93,6 +113,28 @@ function gameStart() {
 
   bgMusic.currentTime = 0;
   bgMusic.play();
+}
+
+function updateUI() {
+  // Score
+  if (scoreContainer) {
+    scoreContainer.innerText = "Score: " + score;
+  }
+
+  // Health bar
+  if (healthFill) {
+    const healthPercent = (currentHealth / maxHealth) * 100;
+    healthFill.style.width = healthPercent + "%";
+
+    // color change based on health
+    if (healthPercent > 60) {
+      healthFill.style.background = "limegreen";
+    } else if (healthPercent > 30) {
+      healthFill.style.background = "orange";
+    } else {
+      healthFill.style.background = "red";
+    }
+  }
 }
 
 function startTimer() {
@@ -133,15 +175,17 @@ function gameLoop() {
   obstArray.forEach((ballsObj) => {
     ballsObj.ballGravity();
   });
-  tubeDespawnCheck();
-  bikeCollitionCheck();
+  tubeDeSpawnCheck();
+  bikeCollisionCheck();
   //ballsObj.ballGravity();
+  score += 1;
+  updateUI();
 }
 
 //funtions gamespawn
 function spawnObj() {
-  const randomPositionX = Math.floor(Math.random() * 1800);
-  const randomPositionY = Math.floor(Math.random() * 100);
+  const randomPositionX = Math.floor(Math.random() * 6400);
+  const randomPositionY = Math.floor(Math.random() * 6400);
   let newBallFall = new Balls(randomPositionX, randomPositionY);
   obstArray.push(newBallFall);
   // random number between -200 and 0
@@ -155,31 +199,41 @@ function spawnObj() {
 }
 //functions despawn
 //function collition
-function tubeDespawnCheck() {
-  obstArray.forEach((ballsObj, index) => {
-    if (ballsObj.x <= 0) {
-      // When we want to remove an element from the game we need to remove it from both environments:
-      //1. DOM environment
-      ballsObj.node.remove();
-      //2 JS environment
-      obstArray.splice(index, 1);
+function tubeDeSpawnCheck() {
+  for (let i = obstArray.length - 1; i >= 0; i--) {
+    if (obstArray[i].x <= 0) {
+      obstArray[i].node.remove();
+      obstArray.splice(i, 1);
+
+      score += 20;
     }
-  });
+  }
 }
 
-function bikeCollitionCheck() {
-  // birdObj
-  // tubeObj
-  obstArray.forEach((ballsObj) => {
+function bikeCollisionCheck() {
+  obstArray.forEach((ballsObj, index) => {
     let isColliding = collisionCheck(bikeObj, ballsObj);
-    if (isColliding === true) {
+
+    if (isColliding) {
       crashSound.currentTime = 0;
       crashSound.play();
-      gameOver();
+
+      // remove obstacle after hit
+      ballsObj.node.remove();
+      obstArray.splice(index, 1);
+
+      // NEW: lose life instead of game over
+      currentHealth -= 25;
+
+      updateUI();
+
+      if (currentHealth <= 0) {
+        currentHealth = 0;
+        gameOver();
+      }
     }
   });
 }
-
 function collisionCheck(elem1, elem2) {
   return (
     elem1.x < elem2.x + elem2.width &&
@@ -194,6 +248,7 @@ function gameOver() {
   clearInterval(gameIntervalId);
   clearInterval(objSpawnIntervalId);
   clearInterval(timer);
+
   engineSound.play();
   bgMusic.pause();
 

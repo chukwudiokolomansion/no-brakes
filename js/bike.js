@@ -4,10 +4,10 @@ class Bike {
     this.node.src = "./images/bike1.png";
     gameBoxNode.append(this.node); // adding the node to the game screen
 
-    this.x = 900;
-    this.y = 700;
-    this.width = 140;
-    this.height = 200;
+    this.x = 3400;
+    this.y = 2700;
+    this.width = 500;
+    this.height = 900;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
@@ -16,7 +16,7 @@ class Bike {
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
 
-    this.swerveSpeed = 10;
+    this.swerveSpeed = 50;
     //this.rightSwerve = 40;
     //this.leftSwerve = 40
   }

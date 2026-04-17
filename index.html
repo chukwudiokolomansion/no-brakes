@@ -19,13 +19,24 @@
 
     <div id="game-screen" class="video-container">
       <video id="bg-video" autoplay muted loop>
-        <source src="./video/vidtest2.mp4" type="video/mp4" />
+        <source src="./video/vidtest3.mp4" type="video/mp4" />
       </video>
       <div id="timeRemaining">Remaining Time: <span>00:00</span></div>
 
       <div id="game-box"></div>
     </div>
 
+    <div id="lives">Lives: 2</div>
+    <div id="timeRemaining">02:00</div>
+    <div id="ui">
+      <div id="score">Score: 0</div>
+
+      <div id="health-bar">
+        <div id="health-fill"></div>
+      </div>
+
+      <div id="timeRemaining">02:00</div>
+    </div>
     <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
     <!-- Game elements will be added here via javascript and DOM manipulation -->
 
@@ -36,11 +47,12 @@
         alt="game-over-screen"
         class="full-bg"
       />
-      <button onclick="location.reload()" id="restart-btn">Restart</button>
+      <button onclick="location.reload()" id="restart-btn">
+        come on! try again
+      </button>
     </div>
 
     <script src="./js/main.js"></script>
-    <script src="./js/obst1.js"></script>
     <script src="./js/bike.js"></script>
     <script src="./js/time.js"></script>
     <script src="./js/balls.js"></script>

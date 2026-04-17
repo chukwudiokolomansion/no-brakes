@@ -1,13 +1,22 @@
 class Balls {
   constructor(upBall, downBall) {
     this.node = document.createElement("img");
-    this.node.src = "./images/obst11.png";
+    //this.node.src = "./images/obst11.png";
+    const carImages = [
+      "./images/obst1.png",
+      "./images/stone1.png",
+      "./images/dragon.png",
+    ];
+
+    this.node.src = carImages[Math.floor(Math.random() * carImages.length)];
+    //this.node.src = "./images/car.png";
+
     gameBoxNode.append(this.node); // add to game screen
 
     this.x = upBall;
     this.y = downBall;
-    this.width = 140;
-    this.height = 140;
+    this.width = 240;
+    this.height = 340;
 
     // initial adjustments of styles
     this.node.style.width = `${this.width}px`;
@@ -20,7 +29,7 @@ class Balls {
 
     //Random horizontal position
 
-    this.Speed = 5;
+    this.Speed = 15;
   }
 
   ballGravity() {
